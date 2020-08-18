@@ -1,0 +1,12 @@
+---
+
+- name: Change shell to fish
+  user:
+    name: "{{ ansible_user }}"
+    shell: /usr/bin/fish
+
+- name: Add user to Docker
+  user:
+    name: "{{ ansible_user }}"
+    groups: docker
+    append: yes

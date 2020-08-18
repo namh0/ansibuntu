@@ -1,0 +1,19 @@
+---
+- name: Download Firefox Developer Edition
+  unarchive:
+    src: "https://download.mozilla.org/?product=firefox-devedition-latest-ssl&os=linux64&lang=en-US"
+    remote_src: yes
+    dest: "{{ optdir }}"
+
+- name: Add .desktop file for Firefox Developer Edition
+  template:
+    src: firefox-developer.desktop.tmpl
+    dest: "{{ ansible_user_dir }}/.local/share/applications/firefox-developer.desktop"
+    mode: 0755
+
+- name: Link Firefox Developer binary to /usr/local/bin
+  become: true
+  file:
+    src: "{{ optdir }}/firefox/firefox"
+    dest: /usr/local/bin/ffdev
+    state: link

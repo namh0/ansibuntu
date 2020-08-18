@@ -1,0 +1,12 @@
+---
+- name: Get docker-compose version
+  shell: "curl https://api.github.com/repos/docker/compose/releases/latest --silent | jq .name -r"
+  args:
+    warn: false
+  register: dcversion
+
+- name: Install docker-compose
+  get_url:
+    url: "https://github.com/docker/compose/releases/download/{{ dcversion.stdout }}/docker-compose-{{ ansible_system }}-{{ ansible_userspace_architecture }}"
+    dest: /usr/local/bin/docker-compose
+    mode: 0755

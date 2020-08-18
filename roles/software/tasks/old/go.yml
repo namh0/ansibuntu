@@ -1,0 +1,12 @@
+---
+- name: Get Go version
+  shell: "curl \"https://golang.org/dl/?mode=json\" --silent | jq '.[0].files[] | select(.os == \"linux\") | select(.arch == \"amd64\") | .filename' | sed -e 's/^\"//' -e 's/\"$//'" 
+  args:
+    warn: false
+  register: goversion
+
+- name: Install Go
+  unarchive:
+    src: "https://dl.google.com/go/{{ goversion.stdout }}"
+    remote_src: yes
+    dest: /usr/local/

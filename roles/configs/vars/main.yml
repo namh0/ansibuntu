@@ -1,0 +1,4 @@
+dotrepo: "https://git.sr.ht/~namho/dotfiles"
+dotdir: "{{ ansible_user_dir }}/dotfiles"
+# fontdir: "/usr/local/share/fonts"
+# themedir: "{{ ansible_user_dir}}/themes"

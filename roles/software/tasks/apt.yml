@@ -1,0 +1,97 @@
+---
+   
+#- name: Add openrazer PPA
+#  apt_repository:
+#    repo: ppa:openrazer/stable
+#    state: present
+#    filename: openrazer
+
+- name: Install setup tools
+  apt:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ setup_tools }}"
+
+- name: Add Syncthing release PGP keys
+  apt_key: 
+    url: https://syncthing.net/release-key.txt
+    state: present
+
+- name: Add Syncthing stable repo
+  apt_repository:
+    repo: deb https://apt.syncthing.net/ syncthing stable
+    state: present
+    filename: syncthing
+
+- name: Add Nodesource PGP keys
+  apt_key: 
+    url: https://deb.nodesource.com/gpgkey/nodesource.gpg.key
+    state: present
+
+- name: Add Nodejs 14.x repo
+  apt_repository:
+    repo: deb https://deb.nodesource.com/node_14.x focal main
+    state: present
+    filename: nodesource
+
+- name: Add Nodejs 14.x repo
+  apt_repository:
+    repo: deb-src https://deb.nodesource.com/node_14.x focal main
+    state: present
+    filename: nodesource
+
+- name: Add Yarn GPG keys
+  apt_key:
+    url: https://dl.yarnpkg.com/debian/pubkey.gpg
+    state: present
+
+- name: Add Yarn repo
+  apt_repository:
+    repo: deb https://dl.yarnpkg.com/debian/ stable main
+    state: present
+    filename: yarn
+
+- name: Add Lutris PPA
+  apt_repository:
+    repo:  ppa:lutris-team/lutris
+    state: present
+    filename: lutris
+
+- name: apt update
+  apt:
+    update_cache: yes
+
+- name: Install CLI tools and utilities
+  apt:
+    name: "{{ item }}"
+    state: latest
+  loop: "{{ tools_utilities }}"
+
+- name: Install dev tools
+  apt:
+    name: "{{ item }}"
+    state: latest
+  loop: "{{ dev_tools }}"
+
+- name: Install firmware and tools
+  apt:
+    name: "{{ item }}"
+    state: latest
+  loop: "{{ firmware }}"
+
+- name: Install desktop applications
+  apt:
+    name: "{{ item }}"
+    state: latest
+  loop: "{{ desktop_apps }}"
+
+- name: Install fonts and themes
+  apt:
+    name: "{{ item }}"
+    state: latest
+  loop: "{{ fonts_themes }}"
+
+- name: Update all packages
+  apt:
+    name: "*"
+    state: latest

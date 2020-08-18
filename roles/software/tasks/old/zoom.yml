@@ -1,0 +1,8 @@
+- name: Add Zoom.us signing key
+  rpm_key:
+    key: https://zoom.us/linux/download/pubkey
+    state: present
+
+- name: Install Zoom.us client
+  dnf:
+    name: https://zoom.us/client/latest/zoom_x86_64.rpm

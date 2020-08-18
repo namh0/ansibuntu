@@ -1,0 +1,25 @@
+---
+- name: Get Bitwarden version
+  shell: "curl https://api.github.com/repos/bitwarden/desktop/releases/latest --silent | jq .name -r"
+  args:
+    warn: false
+  register: bwversion
+
+- name: Install Bitwarden
+  get_url:
+    url: "https://github.com/bitwarden/desktop/releases/download/v{{ bwversion.stdout }}/Bitwarden-{{ bwversion.stdout }}-x86_64.AppImage"
+    dest: "{{ optdir }}/bitwarden.AppImage"
+    mode: 0755
+
+- name: Add .desktop file for Bitwarden
+  template:
+    src: bitwarden.desktop.tmpl
+    dest: "{{ ansible_user_dir }}/.local/share/applications/bitwarden.desktop"
+
+- name: Link Bitwarden binary to /usr/local/bin
+  become: true
+  file:
+    src: "{{ optdir }}/bitwarden.AppImage"
+    dest: /usr/local/bin/bitwarden
+    state: link
+

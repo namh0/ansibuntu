@@ -1,0 +1,21 @@
+---
+- name: Install dependencies for throttled
+  become: true
+  dnf:
+    name:
+      - python3-cairo-devel
+      - cairo-gobject-devel 
+      - gobject-introspection-devel 
+      - dbus-glib-devel 
+      - python3-devel 
+      - make 
+      - libX11-devel
+
+- name: Download Lenovo Fix service
+  git:
+    repo: "https://github.com/erpalma/throttled"
+    dest: "{{ ansible_user_dir }}/.opt/throttled"
+
+- name: Install throttled
+  become: true
+  shell: "{{ ansible_user_dir }}/.opt/throttled/install.sh"

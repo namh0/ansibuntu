@@ -1,0 +1,8 @@
+[Unit]
+Description=Run user script after suspend
+
+[Service]
+ExecStart=/opt/sleep.sh
+
+[Install]
+WantedBy=multi-user.target

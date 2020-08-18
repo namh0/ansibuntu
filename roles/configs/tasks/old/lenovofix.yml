@@ -1,0 +1,22 @@
+---
+
+- name: Enable throttled copr repo
+  shell: "yes | dnf copr enable abn/throttled"
+  args:
+    warn: false
+
+- name: Install throttled
+  dnf:
+    name: throttled
+
+- name: Enable throttled systemd service
+  systemd:
+    name: throttled
+    enabled: yes
+    daemon_reload: yes
+    masked: no
+
+- name: Start throttled systemd service
+  systemd:
+    name: throttled
+    state: started

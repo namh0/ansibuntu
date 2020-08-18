@@ -1,0 +1,5 @@
+---
+- include: apt.yml
+  become: true
+ 
+- include: flatpak.yml

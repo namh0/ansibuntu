@@ -1,0 +1,24 @@
+---
+- name: Link suspendfix sleep script
+  file:
+    src: "{{ dotdir }}/scripts/sleep.sh"
+    dest: /opt/sleep.sh
+    state: link
+
+- name: Add systemd file for suspendfix
+  template:
+    src: suspendfix.service.tmpl
+    dest: /etc/systemd/system/suspendfix.service
+    mode: 0755
+
+- name: Enable suspendfix service
+  systemd:
+    name: suspendfix
+    daemon_reload: yes
+    enabled: yes
+    masked: no
+
+- name: Start suspendfix service
+  systemd:
+    name: suspendfix
+    state: started

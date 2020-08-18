@@ -1,0 +1,10 @@
+---
+- include: dotfiles.yml
+
+  #- include: suspendfix.yml
+  #become: true
+
+- include: gitconfig.yml
+
+- include: user.yml
+  become: true

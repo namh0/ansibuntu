@@ -1,0 +1,48 @@
+---
+
+- name: Download dotfiles
+  git:
+    repo: "{{ dotrepo }}"
+    dest: "{{ dotdir }}"
+  ignore_errors: "{{ ansible_check_mode }}"
+
+- name: Install Vim Plug
+  shell: curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  args:
+    warn: false
+
+- name: Install Starship prompt
+  shell: curl -fsSL https://starship.rs/install.sh | bash -s -- --yes
+  become: true
+  args:
+    warn: false
+
+- name: Link fish config
+  file:
+    src: "{{ dotdir }}/fish"
+    dest: "{{ ansible_user_dir }}/.config/fish"
+    state: link
+
+- name: Link Neovim init file
+  file:
+    src: "{{ dotdir }}/nvim"
+    dest: "{{ ansible_user_dir }}/.config/nvim"
+    state: link
+
+- name: Link Kitty conf
+  file:
+    src: "{{ dotdir }}/kitty"
+    dest: "{{ ansible_user_dir }}/.config/kitty"
+    state: link
+
+- name: Link .tmux.conf
+  file:
+    src: "{{ dotdir }}/tmux/.tmux.conf"
+    dest: "{{ ansible_user_dir }}/.tmux.conf"
+    state: link
+
+- name: Link .xbindkeysrc
+  file: 
+    src: "{{ dotdir }}/misc/.xbindkeysrc"
+    dest: "{{ ansible_user_dir }}/.xbindkeysrc"
+    state: link

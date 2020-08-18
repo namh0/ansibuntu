@@ -1,0 +1,27 @@
+---
+
+- name: Add flathub flatpak repo
+  become: true
+  flatpak_remote:
+    name: flathub
+    state: present
+    flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
+
+- name: Add Firefox Developer / Nightly repo
+  become: true
+  flatpak_remote:
+    name: org.mozilla.FirefoxRepo
+    state: present
+    flatpakrepo_url: https://firefox-flatpak.mojefedora.cz/org.mozilla.FirefoxRepo.flatpakrepo
+
+- name: Install Flathub flatpaks
+  flatpak:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ flathub }}"
+
+- name: Install Firefox Developer flatpak
+  flatpak:
+    name: org.mozilla.FirefoxDevEdition
+    state: present
+    remote: org.mozilla.FirefoxRepo

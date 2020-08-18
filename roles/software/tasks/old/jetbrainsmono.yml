@@ -1,0 +1,13 @@
+---
+- name: Get JetBrains Mono version
+  shell: curl https://api.github.com/repos/JetBrains/JetBrainsMono/releases/latest --silent | jq .name -r | cut -d 'v' -f2
+  args:
+    warn: false
+  register: jbversion
+
+- name: Download JetBrains Mono
+  unarchive:
+    src: "https://github.com/JetBrains/JetBrainsMono/releases/download/v{{ jbversion.stdout }}/JetBrains.Mono.{{ jbversion.stdout }}.zip"
+    remote_src: yes
+    dest: /usr/share/fonts/
+  become: true

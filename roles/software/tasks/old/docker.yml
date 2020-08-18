@@ -1,0 +1,44 @@
+---
+- name: Remove OS Docker
+  dnf:
+    name:
+      - docker
+      - docker-client
+      - docker-client-latest
+      - docker-common
+      - docker-latest
+      - docker-latest-logrotate
+      - docker-logrotate
+      - docker-selinux
+      - docker-engine-selinux
+      - docker-engine
+    state: absent
+
+- name: Ensure dependencies are installed
+  dnf:
+    name:
+      - dnf-plugins-core
+    state: present
+
+- name: Add Docker GPG Key
+  rpm_key:
+    state: present
+    key: https://download.docker.com/linux/fedora/gpg
+
+- name: Add Docker dnf repo
+  shell: "dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo"
+  args:
+    warn: false
+
+- name: Install Docker
+  dnf:
+    name:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+
+- name: Add user to docker group
+  user:
+    name: "{{ ansible_user }}"
+    groups: docker
+    append: yes

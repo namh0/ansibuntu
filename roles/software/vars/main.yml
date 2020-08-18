@@ -1,0 +1,74 @@
+---
+
+setup_tools:
+  - curl
+  - wget
+  - git
+  - lsb-release
+  - gnupg
+  - apt-transport-https
+
+tools_utilities:
+  - jq
+  - fzf
+  - ripgrep
+  - xbindkeys
+  - xautomation
+  - zip
+  - bzip2
+  - tar
+  - p7zip-full
+  - fd-find
+  - mosh
+  - wireguard
+  - wireguard-dkms
+  - wireguard-tools
+  - imagemagick
+  - xclip
+  - flatpak
+  - syncthing
+  - neofetch
+
+dev_tools:
+  - neovim
+  - fish
+  - tmux
+  - vim
+  - nodejs
+  - yarn
+  - golang
+  - ruby
+  - docker.io
+
+desktop_apps:
+  - kitty
+  - flameshot
+  - firefox
+  # - chromium
+  - gnome-tweaks
+  - dconf-editor
+
+fonts_themes:
+  - fonts-ibm-plex
+  - arc-theme
+  - papirus-icon-theme
+  # - fonts-font-awesome
+  # - fonts-jetbrains-mono
+
+firmware:
+  - fwupd
+
+flathub:
+  - us.zoom.Zoom
+  - com.bitwarden
+  - org.zealdocs.Zeal
+  - com.calibre_ebook.calibre
+  - org.videolan.VLC
+  - org.libreoffice.LibreOffice
+  - org.telegram
+  - com.discordapp.Discord
+  - com.valvesoftware.Steam
+  - com.uploadedlobster.peek
+  - com.transmissionbt.Transmission
+  - com.github.hluk.copyq
+  - com.github.johnfactotum.Foliate

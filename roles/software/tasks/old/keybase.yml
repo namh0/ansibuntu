@@ -1,0 +1,8 @@
+- name: Add keybase.io signing key
+  rpm_key:
+    key: https://keybase.io/docs/server_security/code_signing_key.asc
+    state: present
+
+- name: Install keybase.io
+  dnf:
+    name: https://prerelease.keybase.io/keybase_amd64.rpm

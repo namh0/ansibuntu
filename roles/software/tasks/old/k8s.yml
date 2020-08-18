@@ -1,0 +1,17 @@
+---
+- name: Get kubectl version
+  shell: "curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt"
+  args:
+    warn: false
+  register: kversion
+
+- name: Install kubectl
+  get_url:
+    url: "https://storage.googleapis.com/kubernetes-release/release/{{ kversion.stdout }}/bin/linux/amd64/kubectl"
+    dest: /usr/local/bin/kubectl
+    mode: 0755
+
+- name: Install Helm
+  shell: "curl -L https://git.io/get_helm.sh | bash"
+  args:
+    warn: false

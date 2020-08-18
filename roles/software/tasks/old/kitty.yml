@@ -1,0 +1,30 @@
+---
+- name: Get Kitty version
+  shell: "curl https://api.github.com/repos/kovidgoyal/kitty/releases/latest --silent | jq .name -r | cut -d ' ' -f2"
+  args:
+    warn: false
+  register: kversion
+
+- name: Create Kitty directory
+  file:
+    path: "{{ optdir }}/kitty"
+    state: directory
+    mode: 0755
+
+- name: Download Kitty
+  unarchive:
+    src: "https://github.com/kovidgoyal/kitty/releases/download/v{{ kversion.stdout }}/kitty-{{ kversion.stdout }}-x86_64.txz"
+    remote_src: yes
+    dest: "{{ optdir }}/kitty"
+
+- name: Add .desktop file for Kitty
+  template:
+    src: kitty.desktop.tmpl
+    dest: "{{ ansible_user_dir }}/.local/share/applications/kitty.desktop"
+
+- name: Link Kitty binary to /usr/local/bin
+  become: true
+  file:
+    src: "{{ optdir }}/kitty/bin"
+    dest: /usr/local/bin/kitty
+    state: link
