@@ -62,6 +62,17 @@
     state: present
     filename: lutris
 
+- name: Add HashiCorp PGP key
+  apt_key:
+    url: https://apt.releases.hashicorp.com/gpg
+    state: present
+
+- name: Add HashiCorp repo
+  apt_repository:
+    repo: "deb [arch=amd64] https://apt.releases.hashicorp.com {{ ansible_distribution_release }} main"
+    state: present
+    filename: hashicorp
+
 - name: apt update
   apt:
     update_cache: yes

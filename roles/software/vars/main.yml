@@ -40,6 +40,8 @@ dev_tools:
   - golang
   - ruby
   - docker.io
+  - terraform
+  - awscli
 
 desktop_apps:
   - kitty
@@ -55,8 +57,6 @@ fonts_themes:
   - arc-theme
   - papirus-icon-theme
   - breeze-cursor-theme
-  # - fonts-font-awesome
-  # - fonts-jetbrains-mono
 
 firmware:
   - fwupd
