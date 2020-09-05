@@ -54,6 +54,7 @@ fonts_themes:
   - fonts-ibm-plex
   - arc-theme
   - papirus-icon-theme
+  - breeze-cursor-theme
   # - fonts-font-awesome
   # - fonts-jetbrains-mono
 

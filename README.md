@@ -1,1 +1,1 @@
-Ansible playbooks for Ubuntu
+Ansible playbooks for Pop!_OS
