@@ -1,0 +1,13 @@
+- name: Remove default VSCodium settings.json
+  file:
+    path: "{{ ansible_user_dir }}/.config/VSCodium/User/settings.json"
+    state: absent
+
+- name: Link VSCodium settings.json
+  file:
+    src: "{{ dotdir }}/vscodium/settings.json"
+    dest: "{{ ansible_user_dir }}/.config/VSCodium/User/settings.json"
+    state: link
+
+- name: Install VSCodium extensions
+  shell: cat "{{ dotdir }}/vscodium/extensions.txt" | xargs -L1 codium --install-extension

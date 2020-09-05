@@ -24,3 +24,8 @@
     scope: local
     repo: "{{ playbook_dir }}"
     value: git@git.sr.ht:~namho/popsible
+
+- name: Clone Matcha Theme
+  git:
+    repo: https://github.com/vinceliuice/Matcha-gtk-theme
+    dest: "{{ plabook_dir }}/../Matcha-gtk-theme"

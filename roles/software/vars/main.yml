@@ -26,10 +26,11 @@ tools_utilities:
   - imagemagick
   - xclip
   - flatpak
-  - syncthing
+  # - syncthing
   - neofetch
 
 dev_tools:
+  - codium
   - neovim
   - fish
   - tmux
@@ -44,9 +45,10 @@ desktop_apps:
   - kitty
   - flameshot
   - firefox
-  # - chromium
+  - chromium
   - gnome-tweaks
   - dconf-editor
+  - steam
 
 fonts_themes:
   - fonts-ibm-plex
@@ -67,8 +69,11 @@ flathub:
   - org.libreoffice.LibreOffice
   - org.telegram
   - com.discordapp.Discord
-  - com.valvesoftware.Steam
   - com.uploadedlobster.peek
   - com.transmissionbt.Transmission
   - com.github.hluk.copyq
   - com.github.johnfactotum.Foliate
+
+yarn:
+  - tsc
+  - ts-node

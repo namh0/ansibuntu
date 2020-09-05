@@ -3,3 +3,5 @@
   become: true
  
 - include: flatpak.yml
+
+- include: yarn.yml

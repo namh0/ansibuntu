@@ -1,27 +1,32 @@
 ---
    
-#- name: Add openrazer PPA
-#  apt_repository:
-#    repo: ppa:openrazer/stable
-#    state: present
-#    filename: openrazer
-
 - name: Install setup tools
   apt:
     name: "{{ item }}"
     state: present
   loop: "{{ setup_tools }}"
 
-- name: Add Syncthing release PGP keys
+# - name: Add Syncthing release PGP keys
+#  apt_key: 
+#    url: https://syncthing.net/release-key.txt
+#    state: present
+
+# - name: Add Syncthing stable repo
+#  apt_repository:
+#    repo: deb https://apt.syncthing.net/ syncthing stable
+#    state: present
+#    filename: syncthing
+
+- name: Add VSCodium PGP keys
   apt_key: 
-    url: https://syncthing.net/release-key.txt
+    url: https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg
     state: present
 
-- name: Add Syncthing stable repo
+- name: Add VSCodium repo
   apt_repository:
-    repo: deb https://apt.syncthing.net/ syncthing stable
+    repo: deb https://paulcarroty.gitlab.io/vscodium-deb-rpm-repo/debs/ vscodium main
     state: present
-    filename: syncthing
+    filename: vscodium
 
 - name: Add Nodesource PGP keys
   apt_key: 

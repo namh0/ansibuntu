@@ -8,3 +8,5 @@
 
 - include: user.yml
   become: true
+
+- include: vscodium.yml
