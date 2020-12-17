@@ -1,4 +1,14 @@
 ---
+
+- include: apt.yml
+  become: true
+ 
+- include: flatpak.yml
+
+- include: python.yml
+
+- include: yarn.yml
+
 - include: dotfiles.yml
 
   #- include: suspendfix.yml

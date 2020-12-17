@@ -26,15 +26,15 @@ tools_utilities:
   - imagemagick
   - xclip
   - flatpak
-  # - syncthing
   - neofetch
 
 dev_tools:
-  - codium
   - neovim
+  - codium
   - fish
   - tmux
   - vim
+  - python3-pip
   - nodejs
   - yarn
   - golang
@@ -50,7 +50,6 @@ desktop_apps:
   - chromium
   - gnome-tweaks
   - dconf-editor
-  - steam
 
 fonts_themes:
   - fonts-ibm-plex
@@ -74,7 +73,19 @@ flathub:
   - com.transmissionbt.Transmission
   - com.github.hluk.copyq
   - com.github.johnfactotum.Foliate
+  - com.valvesoftware.Steam
+
+pip:
+  - flask
+  - pynvim
+  - black
+  - pytest
 
 yarn:
   - tsc
   - ts-node
+
+dotrepo: "https://git.sr.ht/~namho/dotfiles"
+dotdir: "{{ ansible_user_dir }}/dotfiles"
+fontdir: "/usr/local/share/fonts"
+themedir: "{{ ansible_user_dir}}/repos/themes"

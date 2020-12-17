@@ -1,0 +1,35 @@
+---
+
+- name: Clone Matcha Theme
+  git:
+    repo: https://github.com/vinceliuice/Matcha-gtk-theme
+    dest: "{{ themedir }}/Matcha-gtk-theme"
+
+- name: Clone Jetbrains Mono Fonts
+  git:
+    repo: https://github.com/JetBrains/JetBrainsMono
+    dest: "{{ theme_dir }}/JetBrainsMono"
+
+- name: Clone Fontawesome fonts
+  git:
+    repo: https://github.com/FortAwesome/Font-Awesome
+    depth: 1
+    version: v4.7.0
+    dest: "{{ theme_dir }}/Font-Awesome"
+
+- name: Create font directory
+  file:
+    path: "{{ ansible_user_dir }}/.fonts"
+    state: directory
+
+- name: Link Jetbrains mono fonts
+  file:
+    src: "{{ theme_dir }}/JetBrainsMono/fonts/ttf"
+    dest: "{{ ansible_user_dir }}/.fonts/jetbrains-mono"
+    state: link
+
+- name: Link Fontawesome fonts
+  file:
+    src: "{{ theme_dir }}/Font-Awesome/fonts"
+    dest: "{{ ansible_user_dir }}/.fonts/fontawesome"
+    state: link
