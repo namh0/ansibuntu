@@ -38,9 +38,9 @@
     repo: "{{ item }}"
     state: present
     filename: nodesource
-    loop:
-      - deb https://deb.nodesource.com/node_14.x focal main
-      - deb-src https://deb.nodesource.com/node_14.x focal main
+  loop:
+    - deb https://deb.nodesource.com/node_14.x focal main
+    - deb-src https://deb.nodesource.com/node_14.x focal main
 
 - name: Add Yarn GPG keys
   apt_key:
