@@ -1,0 +1,17 @@
+---
+
+- name: Upgrade apt packages
+  become: true
+  apt:
+    update_cache: yes
+    name: "*"
+    state: latest
+
+- name: Upgrade Flatpaks
+  become: true
+  shell:
+    cmd: flatpak update --noninteractive
+
+- name: Upgrade npm packages
+  shell:
+    cmd: yarn global upgrad

@@ -6,16 +6,16 @@
     state: present
   loop: "{{ setup_tools }}"
 
-# - name: Add Syncthing release PGP keys
-#  apt_key: 
-#    url: https://syncthing.net/release-key.txt
-#    state: present
+- name: Add Syncthing release PGP keys
+  apt_key: 
+    url: https://syncthing.net/release-key.txt
+    state: present
 
-# - name: Add Syncthing stable repo
-#  apt_repository:
-#    repo: deb https://apt.syncthing.net/ syncthing stable
-#    state: present
-#    filename: syncthing
+- name: Add Syncthing stable repo
+  apt_repository:
+    repo: deb https://apt.syncthing.net/ syncthing stable
+    state: present
+    filename: syncthing
 
 - name: Add VSCodium PGP keys
   apt_key: 
@@ -33,17 +33,14 @@
     url: https://deb.nodesource.com/gpgkey/nodesource.gpg.key
     state: present
 
-- name: Add Nodejs 14.x repo
+- name: Add Nodejs 15.x repo
   apt_repository:
-    repo: deb https://deb.nodesource.com/node_14.x focal main
+    repo: "{{ item }}"
     state: present
     filename: nodesource
-
-- name: Add Nodejs 14.x repo
-  apt_repository:
-    repo: deb-src https://deb.nodesource.com/node_14.x focal main
-    state: present
-    filename: nodesource
+    loop:
+      - deb https://deb.nodesource.com/node_14.x focal main
+      - deb-src https://deb.nodesource.com/node_14.x focal main
 
 - name: Add Yarn GPG keys
   apt_key:
@@ -56,11 +53,11 @@
     state: present
     filename: yarn
 
-- name: Add Lutris PPA
-  apt_repository:
-    repo:  ppa:lutris-team/lutris
-    state: present
-    filename: lutris
+# - name: Add Lutris PPA
+#  apt_repository:
+#    repo:  ppa:lutris-team/lutris
+#    state: present
+#    filename: lutris
 
 - name: Add HashiCorp PGP key
   apt_key:
