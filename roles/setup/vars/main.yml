@@ -9,6 +9,7 @@ setup_tools:
   - apt-transport-https
 
 tools_utilities:
+  - exa
   - jq
   - fzf
   - ripgrep
